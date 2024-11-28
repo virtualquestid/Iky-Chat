@@ -9,7 +9,7 @@ let userMessage = null;
 let isResponseGenerating = false;
 
 // API configuration
-const API_URL = `https://acawapi.vercel.app/v2/akane?q=`;
+const API_URL = `https://acawapi.vercel.app/v2/acaw?q=`;
 
 // Load theme and chat data from local storage on page load
 const loadDataFromLocalstorage = () => {
