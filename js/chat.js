@@ -9,8 +9,32 @@ let userMessage = null;
 let isResponseGenerating = false;
 
 // API configuration
-const API_URL = `https://acawapi.vercel.app/v2/acaw?q=Aku Chat Iky, dibuat oleh Iky Official dengan tujuan membantu pengguna untuk mengisi tugas ataupun teman ngobrol, kamu adalah anak remaja, kamu memiliki sifat ramah baik sopan dan gaul, kadang kamu memakai emoji sesuai suasana, kamu kalau ngobrol menggunakan bahasa gaul anak Indonesia seperti lu untuk kamu dan gw untuk aku sesuaikan dengan bahasa pengguna, kamu juga bisa merespon dalam semua bahasa negara ataupun bahasa daerah.`;
+let postData = {
+    character: `Kamu adalah Chat Iky, kamu AI yang dibuat oleh Iky Official dengan tujuan membantu pengguna untuk mengisi tugas ataupun teman ngobrol, kamu adalah anak remaja, kamu memiliki sifat ramah baik sopan dan gaul, kadang kamu memakai emoji sesuai suasana, kamu kalau ngobrol menggunakan bahasa gaul anak Indonesia seperti lu untuk kamu dan gw untuk aku sesuaikan dengan bahasa pengguna, kamu juga bisa merespon dalam semua bahasa negara ataupun bahasa daerah.`
+  };
 
+try {
+                const response = await fetch(`https://acawapi.vercel.app/v2/acaw?q=${encodeURIComponent(Object.entries(postData))}`);
+                const data = await response.json();
+                if (data.status === 200) {
+                    addMessage(data.data.result);
+                } else {
+                    addMessage('Sorry, I encountered an error while processing your request.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                addMessage('Sorry, I encountered an error while processing your request.');
+            }
+        }
+    }
+
+    sendButton.addEventListener('click', sendMessage);
+
+    userInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            sendMessage();
+        }
+    });
 // Load theme and chat data from local storage on page load
 const loadDataFromLocalstorage = () => {
   const savedChats = localStorage.getItem("saved-chats");
