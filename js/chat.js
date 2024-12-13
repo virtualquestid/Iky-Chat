@@ -15,7 +15,7 @@ let postData = {
 
 try {
                 
-const API_URL = await fetch(`https://acawapi.vercel.app/v2/acaw?q=${encodeURIComponent(Object.entries(postData))}`);
+const API_URL = `https://acawapi.vercel.app/v2/acaw?q=${encodeURIComponent(Object.entries(postData))}`;
 // Load theme and chat data from local storage on page load
 const loadDataFromLocalstorage = () => {
   const savedChats = localStorage.getItem("saved-chats");
