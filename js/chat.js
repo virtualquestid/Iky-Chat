@@ -15,26 +15,6 @@ let postData = {
 
 try {
                 const response = await fetch(`https://acawapi.vercel.app/v2/acaw?q=${encodeURIComponent(Object.entries(postData))}`);
-                const data = await response.json();
-                if (data.status === 200) {
-                    addMessage(data.data.result);
-                } else {
-                    addMessage('Sorry, I encountered an error while processing your request.');
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                addMessage('Sorry, I encountered an error while processing your request.');
-            }
-        }
-    }
-
-    sendButton.addEventListener('click', sendMessage);
-
-    userInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            sendMessage();
-        }
-    });
 // Load theme and chat data from local storage on page load
 const loadDataFromLocalstorage = () => {
   const savedChats = localStorage.getItem("saved-chats");
